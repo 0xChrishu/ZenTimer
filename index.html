@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>番茄钟</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 模式指示器 -->
+        <div class="mode-indicator" id="modeIndicator">
+            <span class="mode-dot" id="modeDot"></span>
+            <span class="mode-text" id="modeText">准备开始</span>
+        </div>
+
+        <!-- 计时器显示 -->
+        <div class="timer-display" id="timerDisplay">25:00</div>
+
+        <!-- 番茄计数 -->
+        <div class="pomodoro-count">
+            <span class="count-label">已完成</span>
+            <span class="count-number" id="pomodoroCount">0</span>
+            <span class="count-label">个番茄</span>
+        </div>
+
+        <!-- 控制按钮 -->
+        <div class="controls">
+            <button class="btn btn-primary" id="startPauseBtn">开始</button>
+            <button class="btn btn-secondary" id="resetBtn">重置</button>
+        </div>
+
+        <!-- 模式切换 -->
+        <div class="mode-switcher">
+            <button class="mode-btn active" data-mode="pomodoro" data-time="25">专注</button>
+            <button class="mode-btn" data-mode="shortBreak" data-time="5">短休息</button>
+            <button class="mode-btn" data-mode="longBreak" data-time="15">长休息</button>
+        </div>
+
+        <!-- 设置按钮 -->
+        <div class="settings-section">
+            <button class="settings-btn" id="settingsBtn">⚙️ 设置</button>
+        </div>
+
+        <!-- 设置面板 -->
+        <div class="settings-panel" id="settingsPanel">
+            <h3>时长设置（分钟）</h3>
+            <div class="setting-row">
+                <label>专注时长</label>
+                <input type="number" id="pomodoroTime" value="25" min="1" max="60">
+            </div>
+            <div class="setting-row">
+                <label>短休息</label>
+                <input type="number" id="shortBreakTime" value="5" min="1" max="30">
+            </div>
+            <div class="setting-row">
+                <label>长休息</label>
+                <input type="number" id="longBreakTime" value="15" min="1" max="60">
+            </div>
+            <div class="setting-row">
+                <label>
+                    <input type="checkbox" id="soundEnabled" checked>
+                    启用声音提醒
+                </label>
+            </div>
+            <div class="setting-row">
+                <label>
+                    <input type="checkbox" id="notificationEnabled" checked>
+                    启用桌面通知
+                </label>
+            </div>
+            <button class="btn btn-primary" id="saveSettingsBtn">保存</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

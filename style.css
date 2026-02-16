@@ -1,0 +1,301 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pomodoro-color: #e74c3c;
+    --short-break-color: #27ae60;
+    --long-break-color: #3498db;
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --text-color: #eee;
+    --text-muted: #888;
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 48px 64px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    min-width: 400px;
+    max-width: 500px;
+}
+
+/* 模式指示器 */
+.mode-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.mode-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--pomodoro-color);
+    transition: var(--transition);
+}
+
+.mode-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* 计时器显示 */
+.timer-display {
+    font-size: 96px;
+    font-weight: 200;
+    margin-bottom: 32px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+/* 番茄计数 */
+.pomodoro-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+}
+
+.count-label {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.count-number {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--pomodoro-color);
+    min-width: 32px;
+}
+
+/* 控制按钮 */
+.controls {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.btn {
+    padding: 16px 40px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--pomodoro-color);
+    color: white;
+    min-width: 140px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 2px solid var(--text-muted);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-color);
+    color: var(--text-color);
+}
+
+/* 模式切换 */
+.mode-switcher {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid transparent;
+    color: var(--text-muted);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.mode-btn:hover {
+    color: var(--text-color);
+}
+
+.mode-btn.active {
+    border-color: var(--pomodoro-color);
+    color: var(--pomodoro-color);
+}
+
+/* 设置按钮 */
+.settings-section {
+    margin-top: 24px;
+}
+
+.settings-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.settings-btn:hover {
+    opacity: 1;
+}
+
+/* 设置面板 */
+.settings-panel {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg);
+    padding: 32px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    min-width: 320px;
+}
+
+.settings-panel.show {
+    display: block;
+}
+
+.settings-panel h3 {
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.setting-row label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.setting-row input[type="number"] {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid var(--text-muted);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 16px;
+    text-align: center;
+}
+
+.setting-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* 遮罩层 */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}
+
+.overlay.show {
+    display: block;
+}
+
+/* 响应式 */
+@media (max-width: 480px) {
+    .container {
+        padding: 32px 24px;
+        min-width: unset;
+        width: 90%;
+    }
+
+    .timer-display {
+        font-size: 72px;
+    }
+
+    .btn {
+        padding: 14px 32px;
+        font-size: 16px;
+    }
+
+    .mode-switcher {
+        flex-wrap: wrap;
+    }
+}
+
+/* 状态颜色类 */
+.mode-pomodoro .mode-dot,
+.mode-pomodoro .count-number,
+.mode-pomodoro .btn-primary,
+.mode-pomodoro .mode-btn.active {
+    background: var(--pomodoro-color);
+    color: var(--pomodoro-color);
+}
+
+.mode-shortbreak .mode-dot,
+.mode-shortbreak .count-number,
+.mode-shortbreak .btn-primary,
+.mode-shortbreak .mode-btn.active {
+    background: var(--short-break-color);
+    color: var(--short-break-color);
+}
+
+.mode-longbreak .mode-dot,
+.mode-longbreak .count-number,
+.mode-longbreak .btn-primary,
+.mode-longbreak .mode-btn.active {
+    background: var(--long-break-color);
+    color: var(--long-break-color);
+}
